@@ -60,7 +60,7 @@ void AdminUsuario::leerUsuario(vector<Usuario*>& usuario){
 	
 }
 
-vector<Usuario*> AdminUsuario:: cargarArchivoUsuario(){
+vector<Usuario*> AdminUsuario::cargarArchivoUsuario(){
 	vector<Usuario*> retval;
 	archivoUsuario.open("Amigos.csv",ios::in);
 	if(archivoUsuario.fail()){
@@ -81,7 +81,7 @@ vector<Usuario*> AdminUsuario:: cargarArchivoUsuario(){
 		retval.push_back(new Usuario(fullName,username,password));
 	}
 		
-return retval;
+	return retval;
 	
 }
 

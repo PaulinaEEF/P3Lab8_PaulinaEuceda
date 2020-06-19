@@ -4,6 +4,7 @@
 #include"Comentario.h"
 #include"Post.h"
 #include"AdminUsuario.h"
+#include"AdminPost.h"
 #include <vector>
 
 using std::cout;
@@ -16,14 +17,20 @@ using std::getline;
 
 int main(int argc, char** argv) {
 	AdminUsuario* obUser = new AdminUsuario("Amigos.csv");
+	AdminPost* obPost = new AdminPost("Posts.csv");
 	vector<Usuario*> listaUsuarios;
-	listaUsuarios.push_back(new Usuario("Paulina E. Euceda", "Paw", "123"));
 	obUser->escribir(1);
+	
+	listaUsuarios.push_back(new Usuario("Paulina E. Euceda", "Paw", "123"));
 	obUser->guardarUsuario(new Usuario("Paulina E. Euceda", "Paw", "123"));
 	obUser->cerrarEscritura();
 	listaUsuarios[0]->agregarPost(new Post("Holiwis", "Que dice mi genteee"));
-	listaUsuarios[0]->agregarPost(new Post("Pensativa", "Este lab esta bonis"));
+	obPost->escribir(1);
+	obPost->guardarPost(new Post("Holiwis", "Que dice mi genteee"));
+	obPost->cerrarEscritura();
 	
+	listaUsuarios[0]->agregarPost(new Post("Holiwis", "Que dice mi genteee"));
+	listaUsuarios[0]->agregarPost(new Post("Pensativa", "Este lab esta bonis"));
 	
 	listaUsuarios.push_back(new Usuario("Steve Rogers", "Capi", "123"));
 	obUser->escribir(1);
@@ -31,14 +38,12 @@ int main(int argc, char** argv) {
 	obUser->cerrarEscritura();
 	
 	listaUsuarios[1]->agregarPost(new Post("Love", "Peggy is the one for me"));
-	
 	listaUsuarios.push_back(new Usuario("Sam M.", "Samm", "123"));
 	obUser->escribir(1);
 	obUser->guardarUsuario(new Usuario("Sam M.", "Samm", "123"));
 	obUser->cerrarEscritura();
 	
 	listaUsuarios[2]->agregarPost(new Post("War", "Humans are not trusted"));
-	
 	listaUsuarios.push_back(new Usuario("Katherine Z. Jones", "Kathy", "123"));
 	obUser->escribir(1);
 	obUser->guardarUsuario(new Usuario("Katherine Z. Jones", "Kathy", "123"));
@@ -81,7 +86,7 @@ int main(int argc, char** argv) {
 			}
 			case 2:{
 				cout<<"---Login---"<<endl;
-				listaUsuarios=obUser->cargarArchivoUsuario();
+				listaUsuarios=obUser->cargarArchivoUsuario();//si comentas esto, se aprecia bien los posts jaja
 				cout<<"Ingrese username: ";
 				string username;
 				cin>>username;
@@ -114,6 +119,11 @@ int main(int argc, char** argv) {
 								cout<<"Likes: "<<listaUsuarios[posusuarioIngresado]->getSeguidos()[i]->getPosts()[j]->getCantLikes()<<endl;
 								cout<<"Hates: "<<listaUsuarios[posusuarioIngresado]->getSeguidos()[i]->getPosts()[j]->getCantHates()<<endl<<endl;
 								
+								for(int k =0; k< listaUsuarios[posusuarioIngresado]->getSeguidos()[i]->getPosts()[j]->getComentarios().size(); k++){
+									cout<<"'" << listaUsuarios[posusuarioIngresado]->getSeguidos()[i]->getPosts()[j]->getComentarios()[k]->getUsername()<<"'   ";
+									cout<<"'" << listaUsuarios[posusuarioIngresado]->getSeguidos()[i]->getPosts()[j]->getComentarios()[k]->getContenido()<<"' \n";
+								}
+								
 							}
 						}
 						for(int i =0; i< listaUsuarios[posusuarioIngresado]->getPosts().size(); i++){
@@ -145,6 +155,9 @@ int main(int argc, char** argv) {
 								getline(cin,contenido);
 								
 								listaUsuarios[posusuarioIngresado]->agregarPost(new Post(titulo, contenido));
+								obPost->escribir(1);
+								obPost->guardarPost(new Post(titulo, contenido));
+								obPost->cerrarEscritura();
 								cout<<endl;
 								break;
 							}

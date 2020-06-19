@@ -7,6 +7,8 @@
 
 using std::vector;
 using std::string;
+
+class AdminPost;
 class Post
 {
 	public:
@@ -26,6 +28,7 @@ class Post
 		string titulo, contenido;
 		int cantLikes, cantHates;
 		vector<Comentario*> vectorComentarios;
+		friend class AdminPost;
 };
 
 #endif
