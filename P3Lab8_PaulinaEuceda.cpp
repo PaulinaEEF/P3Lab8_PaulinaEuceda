@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
 			}
 			case 2:{
 				cout<<"---Login---"<<endl;
-				//listaUsuarios=obUser->cargarArchivoUsuario();//si comentas esto, se aprecia bien los posts jaja
+				listaUsuarios=obUser->cargarArchivoUsuario();//si comentas esto, se aprecia bien los posts jaja
 				cout<<"Ingrese username: ";
 				string username;
 				cin>>username;
