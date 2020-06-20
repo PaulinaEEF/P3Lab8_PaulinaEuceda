@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
 	obUser->guardarUsuario(new Usuario("Katherine Z. Jones", "Kathy", "123"));
 	obUser->cerrarEscritura();
 	listaUsuarios[3]->agregarPost(new Post("Stop", "No more movies with Adam Sandler"));
-	listaUsuarios[0]->agregarSeguidos(listaUsuarios[2]);
+	listaUsuarios[1]->agregarSeguidos(listaUsuarios[2]);
 	listaUsuarios[0]->agregarSeguidos(listaUsuarios[3]);
 	
 	bool controladorSalida=true;
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
 			}
 			case 2:{
 				cout<<"---Login---"<<endl;
-				listaUsuarios=obUser->cargarArchivoUsuario();//si comentas esto, se aprecia bien los posts jaja
+				//listaUsuarios=obUser->cargarArchivoUsuario();//si comentas esto, se aprecia bien los posts jaja
 				cout<<"Ingrese username: ";
 				string username;
 				cin>>username;
